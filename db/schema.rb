@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(version: 20170405142633) do
     t.text     "breed"
     t.date     "available_dates"
     t.time     "available_time"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.json     "photos",          default: []
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -9,6 +9,7 @@ class CreatePets < ActiveRecord::Migration[5.0]
       t.text :breed
       t.date :available_dates
       t.time :available_time
+      t.json  :photos, default: []
 
       t.timestamps
     end
