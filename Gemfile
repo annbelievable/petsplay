@@ -6,6 +6,18 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'devise'
+gem 'figaro'
+gem 'omniauth'
+#gem 'omniauth-facebook'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+gem "fog-aws"
+gem "letter_opener", :group => :development
+gem 'sidekiq'
+gem 'foreman'
+gem 'rails_12factor', group: :production
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use postgresql as the database for Active Record
