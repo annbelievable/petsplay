@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  description: MyText
+  age: 1
+  gender: MyString
+  breed: MyText
+  available_dates: 2017-04-05
+  available_time: 2017-04-05 22:26:33
+
+two:
+  name: MyString
+  type: 
+  description: MyText
+  age: 1
+  gender: MyString
+  breed: MyText
+  available_dates: 2017-04-05
+  available_time: 2017-04-05 22:26:33
