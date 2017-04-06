@@ -14,5 +14,10 @@ class User < ApplicationRecord
    validates  :state, presence: true , on: :update
   #  validates  :photo, presence: true, on: :update
 
+  has_many :borrower_matches, foreign_key: 'owner_id', class_name: 'Match'
+  has_many :borrowers, through: :borrower_matches, source: :borrower
+
+  has_many :owner_matches, foreign_key: 'borrower_id', class_name: "Match"
+  has_many :owners, through: :owner_matches, source: :owner
 
 end
