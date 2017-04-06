@@ -15,24 +15,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     super
-    # byebug
     @user = current_user
   end
 
 
   # PUT /resource
-  def update
-    if (@user.update(user_params))
-      redirect_to '/'
-
-    else
-
-      @user.errors
-      byebug
-      redirect_to edit_user_registration_path
-
-  end
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -78,11 +68,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-
-private
-
-  def user_params
-   params.require(:user).permit(:last_name ,:first_name, :postcode, :city ,:phone_number, :state, :email)
-  end
 end

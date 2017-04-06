@@ -219,7 +219,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  carrierwave (~> 1.0)
+  carrierwave
   coffee-rails (~> 4.2)
   devise
   figaro

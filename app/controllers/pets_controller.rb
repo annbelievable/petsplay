@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :user_updated?
 
   # GET /pets
   # GET /pets.json
@@ -71,4 +72,12 @@ class PetsController < ApplicationController
     def pet_params
       params.require(:pet).permit(:name, :types, :description, :age, :gender, :breed, :available_datetimes, :photos, :user_id)
     end
+
+    def user_updated?
+      if current_user.invalid?(:update)
+        flash[:notice] = "Please complete your profile"
+        redirect_to edit_user_registration_path
+      end
+    end
+
 end
