@@ -2,20 +2,22 @@
 
 one:
   name: MyString
-  type: 
+  types: MyString
   description: MyText
   age: 1
   gender: MyString
-  breed: MyText
-  available_dates: 2017-04-05
-  available_time: 2017-04-05 22:26:33
+  breed: MyString
+  available_datetimes: 2017-04-06 10:29:57
+  photos: 
+  user: one
 
 two:
   name: MyString
-  type: 
+  types: MyString
   description: MyText
   age: 1
   gender: MyString
-  breed: MyText
-  available_dates: 2017-04-05
-  available_time: 2017-04-05 22:26:33
+  breed: MyString
+  available_datetimes: 2017-04-06 10:29:57
+  photos: 
+  user: two

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pets
   root to: 'home#intro'
   get '/about' => 'home#about'
   devise_for :users, skip: [:sessions]

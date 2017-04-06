@@ -6,10 +6,10 @@ class CreatePets < ActiveRecord::Migration[5.0]
       t.text :description
       t.integer :age
       t.string :gender
-      t.text :breed
-      t.timestamps :available_datetimes
-      t.json  :photos, default: []
-      t.references :user, index: true, foreign_key: true
+      t.string :breed
+      t.datetime :available_datetimes
+      t.json :photos
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
