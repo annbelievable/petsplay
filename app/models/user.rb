@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :pets
+  mount_uploader :photo, PhotosUploader
 
   #  validates  :first_name, presence: true
   #  validates  :last_name, presence: true
@@ -14,5 +15,6 @@ class User < ApplicationRecord
   #  validates  :state, presence: true
   #  validates  :photo, presence: true
 
-
+  validates_integrity_of  :photo
+  validates_processing_of :photo
 end

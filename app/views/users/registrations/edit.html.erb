@@ -1,6 +1,7 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+
   <%= devise_error_messages! %>
 
   <div class="field">
@@ -28,13 +29,10 @@
     <%= f.text_field :state %>
   </div>
   <div class="field">
-    <%= f.label :photo %><br />
+    <%= f.label :photo do %><br />
     <%= f.file_field :photo %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.hidden_field :photo_cache %>
+    <% end %>
   </div>
 
   <div class="field">
