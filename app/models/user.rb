@@ -5,14 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :pets
 
-  #  validates  :first_name, presence: true
-  #  validates  :last_name, presence: true
-  #  validates  :phone_number, presence: true
-  #  validates  :address, presence: true
-  #  validates  :postcode, presence: true
-  #  validates  :city, presence: true
-  #  validates  :state, presence: true
-  #  validates  :photo, presence: true
+   validates  :first_name, presence: true, on: :update
+   validates  :last_name, presence: true
+   validates  :phone_number, presence: true ,numericality: { only_integer: true } , on: :update
+  #  validates  :address, presence: true , on: :update
+   validates  :postcode, presence: true , on: :update
+   validates  :city, presence: true , on: :update
+   validates  :state, presence: true , on: :update
+  #  validates  :photo, presence: true, on: :update
 
 
 end
