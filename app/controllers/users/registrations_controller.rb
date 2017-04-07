@@ -15,23 +15,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     super
-    # byebug
     @user = current_user
   end
 
+
   # PUT /resource
-  def update
-    if (@user.update(user_params))
-      redirect_to '/'
-
-    else
-
-      @user.errors
-      byebug
-      redirect_to edit_user_registration_path
-
-  end
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -40,7 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
+  # in to be expired protectednow. This is useful if the user wants to
   # cancel oauth signing in/up in the middle of the process,
   # removing all OAuth session data.
   # def cancel
@@ -64,15 +55,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     '/users/edit'
   end
 
+  def after_update_path_for(resource)
+    '/profile'
+  end
+
+  # def update_resource(resource, params)
+  #   resource.update_without_password(params)
+  # end
+
+
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-
-private
-
-  def user_params
-   params.require(:user).permit(:last_name ,:first_name, :postcode, :city ,:phone_number, :state, :email)
-  end
 end
