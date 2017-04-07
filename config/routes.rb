@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   get '/about' => 'home#about'
   get '/profile' => 'home#profile'
   devise_for :users, controllers: { registrations: 'users/registrations' }
-
+  get '/location' => 'location#index'
   resources :pets
 end
