@@ -9,7 +9,7 @@ gem 'devise'
 gem 'figaro'
 gem 'omniauth'
 #gem 'omniauth-facebook'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave'
 gem 'mini_magick'
 gem "fog-aws"
 gem "letter_opener", :group => :development
