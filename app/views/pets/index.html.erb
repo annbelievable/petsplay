@@ -2,8 +2,16 @@
 
 <h1>Pets</h1>
 
-<table>
-  <thead>
+<%= form_tag pets_path, :method => 'get' do %>
+    <%= text_field_tag :types, params[:types], placeholder: "Type" %>
+    <%= select_tag :gender, options_for_select(["Male","Female"], :selected => :gender), :include_blank => 'Select Gender', class: "btn btn-default btn-block pull-right" %>
+    <%= text_field_tag :breed, params[:breed], placeholder: "Breed" %>
+    <%= text_field_tag :age, params[:age], placeholder: "Age" %>
+    <%= date_field_tag :available_datetimes, params[:available_datetimes], placeholder: "Availability" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<table class="table">
     <tr>
       <th>Name</th>
       <th>Types</th>
@@ -16,9 +24,7 @@
       <th>User</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
 
-  <tbody>
     <% @pets.each do |pet| %>
       <tr>
         <td><%= pet.name %></td>
@@ -35,7 +41,7 @@
         <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
+
 </table>
 
 <br>
