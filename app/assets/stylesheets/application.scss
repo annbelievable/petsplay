@@ -10,10 +10,63 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ */
+
+ /*
+ *= require rails_bootstrap_forms
  */
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "half-slider.css";
+ @import "*";
+
+
+html, body {
+  margin:10px;
+  margin-bottom: 30px;
+  padding:10px;
+  padding-top:30px;
+  font-family: 'Varela Round';
+  background-color: #ffefcc;
+}
+.navbar {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
+  background-color: #ffc266;
+}
+
+p {
+  font-size: 20px;
+}
+
+.photos {
+  width:500px;
+  height:500px;
+  border-radius: 10px;
+}
+
+.container-fluid{
+  align-items: center;
+}
+
+#footer {
+  position: relative;
+  bottom: 0;
+  height: 22px;
+  width: 100%;
+  background-color: #ffc266;
+}
+
+#footer p {
+  font-size: 18px;
+}
+
+#form_container {
+  width:40%;
+}

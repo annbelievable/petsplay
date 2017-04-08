@@ -37,7 +37,9 @@
 
 <p>
   <strong>Photos:</strong>
-  <%= @pet.photos %>
+  <% @pet.photos.each do |p| %>
+    <%= p.thumb %>
+  <% end %>
 </p>
 
 <p>
