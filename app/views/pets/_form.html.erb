@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :gender %>
-    <%= f.text_field :gender %>
+    <%= f.select :gender, ["Male","Female"], :selected => :gender, :include_blank => 'Select Gender' %>
   </div>
 
   <div class="field">
