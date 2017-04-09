@@ -28,11 +28,7 @@
         <td><%= pet.gender %></td>
         <td><%= pet.breed %></td>
         <td><%= pet.available_datetimes %></td>
-        <td>
-          <% pet.photos.each do |photo| %>
-          <%= image_tag photo.thumb, class: "img-response" %>
-          <% end %>
-        </td>
+        <td><%= pet.photos %></td>
         <td><%= pet.user %></td>
         <td><%= link_to 'Show', pet %></td>
         <td><%= link_to 'Edit', edit_pet_path(pet) %></td>

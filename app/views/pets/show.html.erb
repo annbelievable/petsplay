@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<table class="table">
 <p>
   <strong>Name:</strong>
   <%= @pet.name %>
@@ -38,9 +37,7 @@
 
 <p>
   <strong>Photos:</strong>
-  <% @pet.photos.each do |photo| %>
-  <%= image_tag photo.thumb, class: "img-response" %>
-  <% end %>
+  <%= @pet.photos %>
 </p>
 
 <p>
