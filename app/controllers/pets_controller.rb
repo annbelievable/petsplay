@@ -25,6 +25,7 @@ class PetsController < ApplicationController
   # POST /pets
   # POST /pets.json
   def create
+    byebug
     @pet = Pet.new(pet_params)
 
     respond_to do |format|
@@ -70,7 +71,7 @@ class PetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
-      params.require(:pet).permit(:name, :types, :description, :age, :gender, :breed, :available_datetimes, :photos, :user_id)
+      params.require(:pet).permit(:name, :types, :description, :age, :gender, :breed, :available_datetimes, :user_id, photos: [])
     end
 
     def user_updated?
