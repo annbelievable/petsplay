@@ -8,6 +8,10 @@ class HomeController < ApplicationController
   end
 
   def profile
-    @user = current_user
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
   end
 end

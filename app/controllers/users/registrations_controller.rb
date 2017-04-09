@@ -13,10 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  def edit
-    super
-    @user = current_user
-  end
+  # def edit
+  #   super
+  # end
 
 
   # PUT /resource
@@ -56,7 +55,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    '/profile'
+    profile_path(current_user)
   end
 
   # def update_resource(resource, params)

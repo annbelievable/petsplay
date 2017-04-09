@@ -1,4 +1,47 @@
-<h1>Profile Page</h1>
 
-<p><%= @user.first_name %></p>
-<%= image_tag @user.photo.thumb %>
+<div id="form_container">
+  <div class="profile">
+    <div class="profile-userpic" align="center">
+      <%= image_tag @user.photo.thumb %>
+    </div>
+    <div class="profile-usertitle">
+      <h4><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h4>
+    </div>
+
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li class="active">
+          <a>
+          <i class="glyphicon glyphicon-home"></i>
+          Overview </a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-user"></i>
+          Account Settings </a>
+        </li>
+        <li>
+          <a href="#" target="_blank">
+          <i class="glyphicon glyphicon-ok"></i>
+          Pets </a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-flag"></i>
+          Help </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+  <h2>My pets:</h2>
+  <% if @user.pets.empty? %>
+    <p>No pets yet</p>
+  <% else %>
+    <% @user.pets.each do |p| %>
+      <%= p.name %>
+    <% end %>
+  <% end %>

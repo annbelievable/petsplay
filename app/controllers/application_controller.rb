@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
 
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:first_name, :last_name, :phone_number, :address, :postcode, :city, :state, :email, :password, :password_confirmation, :current_password, :photo, :photo_cache, :remove_photo) }
   end
+
+  def after_sign_in_path_for(resource)
+    profile_path(current_user)
+  end
 end

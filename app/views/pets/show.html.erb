@@ -1,49 +1,76 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pet.name %>
-</p>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <% n = 1 %>
+    <% (@pet.photos.count - 1).times do |x| %>
+      <li data-target="#carousel-example-generic" data-slide-to="#{n}"></li>
+      <% n+=1 %>
+    <% end %>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+        <%= image_tag @pet.photos.first.url(:thumb).to_s, class: "fill" %>
+    </div>
+    <% if @pet.photos.count > 1 %>
+      <% @pet.photos[1..-1].each do |photo| %>
+        <div class="item">
+          <%= image_tag photo.url(:thumb).to_s, class: "img-response" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
 
-<p>
-  <strong>Types:</strong>
-  <%= @pet.types %>
-</p>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @pet.description %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @pet.age %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @pet.gender %>
-</p>
-
-<p>
-  <strong>Breed:</strong>
-  <%= @pet.breed %>
-</p>
-
-<p>
-  <strong>Available datetimes:</strong>
-  <%= @pet.available_datetimes %>
-</p>
-
-<p>
-  <strong>Photos:</strong>
-  <%= @pet.photos %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @pet.user %>
-</p>
-
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
+<div id="form_container">
+  <div class="profile">
+    <div class="profile-usertitle">
+      <h4><%= @pet.name.capitalize %></h4>
+    </div>
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-user"></i>
+          <%= @pet.types %></a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-user"></i>
+          <%= @pet.breed %></a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-user"></i>
+          <%= @pet.description %></a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-user"></i>
+          <%= @pet.age %></a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-ok"></i>
+          <%= @pet.gender %></a>
+        </li>
+        <li>
+          <a href="#">
+          <i class="glyphicon glyphicon-ok"></i>
+          <%= @pet.available_datetimes %></a>
+        </li>
+      </ul>
+      <div class="">
+        <%= button_to("Contact Owner", profile_path(@pet.user_id), method: "get") %>
+      </div>
+    </div>
+  </div>
+</div>

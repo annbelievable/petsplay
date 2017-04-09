@@ -1,49 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pets</h1>
-
-<%= form_tag pets_path, :method => 'get' do %>
-    <%= text_field_tag :types, params[:types], placeholder: "Type" %>
-    <%= select_tag :gender, options_for_select(["Male","Female"], :selected => :gender), :include_blank => 'Select Gender', class: "btn btn-default btn-block pull-right" %>
-    <%= text_field_tag :breed, params[:breed], placeholder: "Breed" %>
-    <%= text_field_tag :age, params[:age], placeholder: "Age" %>
-    <%= date_field_tag :available_datetimes, params[:available_datetimes], placeholder: "Availability" %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
-
-<table class="table">
-    <tr>
-      <th>Name</th>
-      <th>Types</th>
-      <th>Description</th>
-      <th>Age</th>
-      <th>Gender</th>
-      <th>Breed</th>
-      <th>Available datetimes</th>
-      <th>Photos</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Pets Gallery</h1>
+    </div>
     <% @pets.each do |pet| %>
-      <tr>
-        <td><%= pet.name %></td>
-        <td><%= pet.types %></td>
-        <td><%= pet.description %></td>
-        <td><%= pet.age %></td>
-        <td><%= pet.gender %></td>
-        <td><%= pet.breed %></td>
-        <td><%= pet.available_datetimes %></td>
-        <td><%= pet.photos %></td>
-        <td><%= pet.user %></td>
-        <td><%= link_to 'Show', pet %></td>
-        <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-        <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col-lg-4 col-md-4 col-xs-6 thumb">
+        <a class="thumbnail" href="/pets/<%= pet.id %>">
+          <%= image_tag pet.photos.first.thumb, class: "img-response", alt: "" %>
+          <th>Name: </th><td><%= pet.name %></td>
+        </a>
+      </div>
     <% end %>
-
-</table>
-
-<br>
+  </div>
 
 <%= link_to 'New Pet', new_pet_path %>
