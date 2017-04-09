@@ -69,7 +69,7 @@
         </li>
       </ul>
       <div class="">
-        <%= button_to("Contact Owner", profile_path(@pet.user_id), method: "get") %>
+        <%= button_to("Request Booking", { action: "request_booking", owner_id: @pet.user_id }, method: "post") %>
       </div>
     </div>
   </div>

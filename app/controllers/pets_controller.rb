@@ -66,6 +66,24 @@ class PetsController < ApplicationController
     end
   end
 
+  def request_booking
+    match = Match.new(borrower_id: current_user.id, owner_id: params[:owner_id] )
+    if match.save
+      redirect_to pets_path
+      flash[:notice] = "Booking requested successfully!"
+    else
+      redirect_to session[:previous_url]
+      flash[:fail] = "Booking unsuccessful"
+    end
+  end
+
+  def noted
+    byebug
+    match = Match.find(params[:match_id])
+    match.destroy
+    redirect_to profile_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
@@ -74,7 +92,7 @@ class PetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
-      params.require(:pet).permit(:name, :types, :description, :age, :gender, :breed, :available_datetimes, :user_id, photos: [])
+      params.require(:pet).permit(:owner_id, :name, :types, :description, :age, :gender, :breed, :available_datetimes, :user_id, photos: [])
     end
 
     def user_updated?

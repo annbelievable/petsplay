@@ -1,5 +1,5 @@
 
-<div id="form_container">
+<div class="col-lg-6 col-md-6 col-xs-6 thumb">
   <div class="profile">
     <div class="profile-userpic" align="center">
       <%= image_tag @user.photo.thumb %>
@@ -36,12 +36,17 @@
   </div>
 </div>
 
-
-  <h2>My pets:</h2>
-  <% if @user.pets.empty? %>
-    <p>No pets yet</p>
-  <% else %>
-    <% @user.pets.each do |p| %>
-      <%= p.name %>
-    <% end %>
-  <% end %>
+<% request = Match.find_by(owner_id: current_user.id) %>
+<% if request %>
+  <% borrower = User.find(request.borrower_id) %>
+  <div class="col-lg-6 col-md-6 col-xs-6 thumb">
+    <div class="request">
+      <strong>NOTICE!</strong>
+      <p><%= borrower.first_name.capitalize %> requested to book your pet.</p>
+      <p>Please contact him/her through <%= borrower.phone_number %>/<%= borrower.email %></p>
+    </div>
+    <div class="">
+      <%= button_to("Noted", { action: "noted", controller: "pets", match_id: request.id }, method: "delete") %>
+    </div>
+  </div>
+<% end %>
