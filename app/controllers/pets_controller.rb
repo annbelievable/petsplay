@@ -5,8 +5,11 @@ class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.all
-    @pets = Pet.filter(params.slice(:age, :types, :gender, :breed))
+    @pets = Pet.filter(filtered_params(params))
+    if @pets.count == 0
+      @pets = Pet.all
+      flash[:notice] = 'No result matches'
+    end
   end
 
   # GET /pets/1
@@ -26,7 +29,6 @@ class PetsController < ApplicationController
   # POST /pets
   # POST /pets.json
   def create
-    byebug
     @pet = Pet.new(pet_params)
 
     respond_to do |format|
@@ -82,8 +84,8 @@ class PetsController < ApplicationController
       end
     end
 
-    def filtering_params(params)
-      params.slice(:age, :types, :gender, :breed.downcase, :available_datetimes)
+    def filtered_params(params)
+      params.slice(:types, :breed.downcase, :gender)
     end
 
 end
