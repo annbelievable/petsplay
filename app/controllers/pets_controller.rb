@@ -6,6 +6,7 @@ class PetsController < ApplicationController
   # GET /pets.json
   def index
     @pets = Pet.all
+    @pets = Pet.filter(params.slice(:age, :types, :gender, :breed))
   end
 
   # GET /pets/1
@@ -79,6 +80,10 @@ class PetsController < ApplicationController
         flash[:notice] = "Please complete your profile"
         redirect_to edit_user_registration_path
       end
+    end
+
+    def filtering_params(params)
+      params.slice(:age, :types, :gender, :breed.downcase, :available_datetimes)
     end
 
 end
