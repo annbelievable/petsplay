@@ -21,9 +21,19 @@
       <%= f.select :gender, ["Male", "Female"], { class: "selectpicker" } %>
       <%= f.text_area :description %>
       <%= f.file_field :photos, multiple: true %>
-      <%= f.datetime_select :available_datetimes %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.label :available_days %><br>
+      <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |d| %>
+        <%= check_box_tag 'pet[available_days][]', d %><%= d %><br>
+      <% end %>
+      <br>
+      <%= f.label :available_times %><br>
+      <% ["Morning", "Afternoon", "Evening", "Night"].each do |d| %>
+        <%= check_box_tag 'pet[available_times][]', d %><%= d %><br>
+      <% end %>
+      <br>
+
       <%= f.submit %>
+
 
   <% end %>
 

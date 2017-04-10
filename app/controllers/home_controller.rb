@@ -24,4 +24,9 @@ class HomeController < ApplicationController
     redirect_to profile_path
   end
 
+  def favourite
+    Favourite.create(user_id: current_user.id, pet_id: params[:pet_id])
+    redirect_to session[:previous_url]
+  end
+
 end
