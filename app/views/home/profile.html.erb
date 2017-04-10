@@ -1,5 +1,5 @@
 
-<div class="col-lg-6 col-md-6 col-xs-6 thumb">
+<div class="form_container">
   <div class="profile">
     <div class="profile-userpic" align="center">
       <%= image_tag @user.photo.thumb %>
@@ -36,17 +36,22 @@
   </div>
 </div>
 
-<% request = Match.find_by(owner_id: current_user.id) %>
+<% request = Match.where(owner_id: current_user.id) %>
 <% if request %>
-  <% borrower = User.find(request.borrower_id) %>
-  <div class="col-lg-6 col-md-6 col-xs-6 thumb">
-    <div class="request">
-      <strong>NOTICE!</strong>
-      <p><%= borrower.first_name.capitalize %> requested to book your pet.</p>
-      <p>Please contact him/her through <%= borrower.phone_number %>/<%= borrower.email %></p>
-    </div>
-    <div class="">
-      <%= button_to("Noted", { action: "noted", controller: "pets", match_id: request.id }, method: "delete") %>
-    </div>
-  </div>
+  <% request.each do |r| %>
+  <% if r.match == nil %>
+    <% borrower = User.find(r.borrower_id) %>
+      <div class="col-lg-6 col-md-6 col-xs-6 thumb">
+        <div class="request">
+          <strong>NOTICE!</strong>
+          <p><%= borrower.first_name.capitalize %> requested to book your pet.</p>
+          <p>Please contact him/her through <%= borrower.phone_number %>/<%= borrower.email %></p>
+        </div>
+        <div class="">
+          <%= button_to("Approve", { action: "approve_booking", match_id: r.id }, method: "post") %>
+          <%= button_to("Reject", { action: "reject_booking", match_id: r.id }, method: "post") %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>

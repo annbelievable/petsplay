@@ -76,14 +76,7 @@ class PetsController < ApplicationController
       flash[:fail] = "Booking unsuccessful"
     end
   end
-
-  def noted
-    byebug
-    match = Match.find(params[:match_id])
-    match.destroy
-    redirect_to profile_path
-  end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet

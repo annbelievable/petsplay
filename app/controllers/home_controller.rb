@@ -11,4 +11,17 @@ class HomeController < ApplicationController
     @user = current_user
   end
 
+  def approve_booking
+    byebug
+    booking = Match.find(params[:match_id])
+    booking.update(match: true)
+    redirect_to profile_path
+  end
+
+  def reject_booking
+    booking = Match.find(params[:match_id])
+    booking.update(match: false)
+    redirect_to profile_path
+  end
+
 end
