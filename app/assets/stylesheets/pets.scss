@@ -1,3 +1,22 @@
 // Place all the styles related to the Pets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+textarea {
+   resize: none;
+}
+
+#carousel-example-generic {
+  width: 50%;
+  height: 400px;
+}
+
+.search {
+  width: 100%;
+  display: inline-block;
+  background-color: #ffc266;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+}
