@@ -1,62 +1,31 @@
-<%= form_for(pet) do |f| %>
-  <% if pet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
+<div class="container" id="form_container">
+  <fieldset>
+  <legend>Pet's details</legend>
 
-      <ul>
-      <% pet.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <%= bootstrap_form_for(pet) do |f| %>
+    <% if pet.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
+        <ul>
+        <% pet.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <%= f.text_field :name %>
+      <%= f.text_field :types %>
+      <%= f.text_field :breed %>
+      <%= f.number_field :age %>
+      <%= f.select :gender, ["Male", "Female"], { class: "selectpicker" } %>
+      <%= f.text_area :description %>
+      <%= f.file_field :photos, multiple: true %>
+      <%= f.datetime_select :available_datetimes %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.submit %>
+
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :types %>
-    <%= f.text_field :types %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :age %>
-    <%= f.number_field :age %>
-  </div>
-
-  <div class="field">
-    <%= f.label :gender %>
-    <%= f.text_field :gender %>
-  </div>
-
-  <div class="field">
-    <%= f.label :breed %>
-    <%= f.text_field :breed %>
-  </div>
-
-  <div class="field">
-    <%= f.label :available_datetimes %>
-    <%= f.datetime_select :available_datetimes %>
-  </div>
-
-  <div class="field">
-    <%= f.label :photos %>
-    <%= f.text_field :photos %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  </fieldset>
+</div>

@@ -12,7 +12,7 @@ class PhotosUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [800, 600]
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fill: [400, 300]
+    process resize_to_fill: [720, 540]
   end
 
   def extension_whitelist
