@@ -1,0 +1,38 @@
+<%= form_for @place do |f| %>
+  <fieldset class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :Name %>
+    <%= f.text_field :visited_by, class: "form-control" %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :address  %>
+    <%= f.text_field :address, class: "form-control" %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :longitude  %>
+    <%= f.text_field :longitude, class: "form-control" %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude, class: "form-control" %>
+  </fieldset>
+
+  <%= f.submit 'Add!', class: 'btn btn-primary' %>
+
+  <div class="col-sm-3">
+  <%= f.text_field :longitude, class: "form-control" %>
+</div>
+
+
+
+<div class="col-sm-4">
+  <a href="#" id="find-on-map" class="btn btn-info btn-sm">Find on the map</a>
+</div>
+<% end %>

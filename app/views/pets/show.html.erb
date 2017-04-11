@@ -72,13 +72,20 @@
         </li>
       </ul>
       <div class="">
-        <% if @pet.user_id != current_user.id %>
-          <% if Favourite.where() %>
-            <%= button_to("Favourite It!", { action: "favourite", pet_id: @pet.id }, method: "post") %>
+          <% if (@pet.user_id != current_user.id )%>
+            <%= button_to("Favourite It!", { action: "favourite!", pet_id: @pet.id, }, method: "post") %>
           <% end %>
-          <%= button_to("Request Booking", { action: "request_booking", owner_id: @pet.user_id }, method: "post") %>
-        <% end %>
+
       </div>
+
     </div>
   </div>
 </div>
+
+<header><h1 class="display-4"><%= @pet.name %></h1></header>
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@pet.user.latitude},#{@pet.user.longitude}&markers=#{@pet.user.latitude},#{@pet.user.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+              class: 'img-fluid img-rounded', alt: "#{@pet.name} on the map"%>
+
+
+<p>Address: <%= @pet.user.address %></p>
+<p>Coordinates: <%= @pet.user.latitude %> <%= @pet.user.longitude %></p>
