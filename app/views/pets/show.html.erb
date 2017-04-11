@@ -4,14 +4,14 @@
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
     <% n = 1 %>
-    <% (@pet.photos.count - 1).times do |x| %>
+    <% ((@pet.photos.count) - 1).times do |x| %>
       <li data-target="#carousel-example-generic" data-slide-to="#{n}"></li>
       <% n+=1 %>
     <% end %>
   </ol>
   <div class="carousel-inner">
     <div class="item active">
-        <%= image_tag @pet.photos.first.url(:thumb).to_s, class: "fill" %>
+        <%= image_tag @pet.photos.first.thumb.url , class: "fill" %>
     </div>
     <% if @pet.photos.count > 1 %>
       <% @pet.photos[1..-1].each do |photo| %>
@@ -63,14 +63,29 @@
           <%= @pet.gender %></a>
         </li>
         <li>
-          <a href="#">
           <i class="glyphicon glyphicon-ok"></i>
-          <%= @pet.available_datetimes %></a>
+          <% @pet.available_days.each %>
+        </li>
+        <li>
+          <i class="glyphicon glyphicon-ok"></i>
+          <% @pet.available_times %>
         </li>
       </ul>
       <div class="">
-        <%= button_to("Request Booking", { action: "request_booking", owner_id: @pet.user_id }, method: "post") %>
+          <% if (@pet.user_id != current_user.id )%>
+            <%= button_to("Favourite It!", { action: "favourite!", pet_id: @pet.id, }, method: "post") %>
+          <% end %>
+
       </div>
+
     </div>
   </div>
 </div>
+
+<header><h1 class="display-4"><%= @pet.name %></h1></header>
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@pet.user.latitude},#{@pet.user.longitude}&markers=#{@pet.user.latitude},#{@pet.user.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+              class: 'img-fluid img-rounded', alt: "#{@pet.name} on the map"%>
+
+
+<p>Address: <%= @pet.user.address %></p>
+<p>Coordinates: <%= @pet.user.latitude %> <%= @pet.user.longitude %></p>
