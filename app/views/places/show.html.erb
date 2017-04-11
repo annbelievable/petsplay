@@ -1,0 +1,21 @@
+<header><h1 class="display-4"><%= @place.title %></h1></header>
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@place.latitude},#{@place.longitude}&markers=#{@place.latitude},#{@place.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+              class: 'img-fluid img-rounded', alt: "#{@place.title} on the map"%>
+
+
+<p>Address: <%= @place.address %></p>
+<p>Coordinates: <%= @place.latitude %> <%= @place.longitude %></p>
+
+
+
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@place.latitude},#{@place.longitude}&zoom=13&size=400x400&markers=
+icon:https://goo.gl/zGTLE0|#{@place.latitude},#{@place.longitude}",
+              class: 'img-fluid img-rounded', alt: "#{@place.title} on the map"%>
+
+
+
+
+&markers=icon:http://icons.iconarchive.com/icons/sonya/swarm/256/Cat-icon.png
+&markers=
+https://maps.googleapis.com/maps/api/staticmap?center=Williamsburg,Brooklyn,NY&zoom=13&size=400x400&
+markers=color:blue%

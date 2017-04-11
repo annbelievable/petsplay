@@ -23,4 +23,14 @@ class User < ApplicationRecord
 
   validates_integrity_of  :photo
   validates_processing_of :photo
+
+  geocoded_by :full_street_address
+  after_validation :geocode
+
+  def full_street_address
+    "#{self.address}, #{self.postcode}, #{self.postcode} ,#{self.state}"
+  end
+
+
+
 end
