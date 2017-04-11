@@ -71,11 +71,12 @@
       <div class="">
         <%= button_to("Request Booking", { action: "request_booking", owner_id: @pet.user_id }, method: "post") %>
       </div>
+      <div class="">
+        <%= button_to("Add to favourite", { action: "favourite!", owner_id: @pet.user_id }, method: "post") %>
+      </div>
     </div>
   </div>
 </div>
-
-<%x = "http://maps.googleapis.com/maps/api/staticmap?center=#{@pet.user.latitude},#{@pet.user.longitude}&markers=#{@pet.latitude},#{@pet.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8"%>
 
 <header><h1 class="display-4"><%= @pet.name %></h1></header>
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@pet.user.latitude},#{@pet.user.longitude}&markers=#{@pet.user.latitude},#{@pet.user.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",

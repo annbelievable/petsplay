@@ -15,6 +15,8 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
+    byebug
+    @pets = Pet.find(params[:id])
   end
 
   # GET /pets/new
@@ -84,6 +86,11 @@ class PetsController < ApplicationController
     redirect_to profile_path
   end
 
+  def favourite!
+
+    Favourite.new(pet_id: @pet.id ,user_id: current_user.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
@@ -105,5 +112,6 @@ class PetsController < ApplicationController
     def filtered_params(params)
       params.slice(:types, :breed.downcase, :gender)
     end
+
 
 end

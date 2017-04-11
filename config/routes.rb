@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 #   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get '/location' => 'location#index'
-
+  post 'favourite!' => 'pets#favourite!'
   post '/request_booking' => 'pets#request_booking'
   delete 'noted' => 'pets#noted'
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
