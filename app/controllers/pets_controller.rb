@@ -1,11 +1,12 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :user_updated?
+  before_action :filtered_params, only: [:index]
 
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.filter(filtered_params(params))
+    @pets = Pet.filter(filtered_params)
     if @pets.count == 0
       @pets = Pet.all
       flash[:notice] = 'No result matches'
@@ -31,8 +32,7 @@ class PetsController < ApplicationController
   # POST /pets
   # POST /pets.json
   def create
-    @pet = Pet.new(pet_params)
-
+    @pet = current_user.pets.new(pet_params)
     respond_to do |format|
       if @pet.save
         format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
@@ -47,6 +47,7 @@ class PetsController < ApplicationController
   # PATCH/PUT /pets/1
   # PATCH/PUT /pets/1.json
   def update
+    byebug
     respond_to do |format|
       if @pet.update(pet_params)
         format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
@@ -79,17 +80,14 @@ class PetsController < ApplicationController
     end
   end
 
-  def noted
-    byebug
-    match = Match.find(params[:match_id])
-    match.destroy
-    redirect_to profile_path
-  end
+
+  
 
   def favourite!
 
     Favourite.new(pet_id: @pet.id ,user_id: current_user.id)
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -99,7 +97,7 @@ class PetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
-      params.require(:pet).permit(:owner_id, :name, :types, :description, :age, :gender, :breed, :available_datetimes, :user_id, photos: [])
+      params.require(:pet).permit(:owner_id, :name, :types, :description, :age, :gender, :breed, available_days: [], available_times: [], photos: [])
     end
 
     def user_updated?
@@ -109,7 +107,7 @@ class PetsController < ApplicationController
       end
     end
 
-    def filtered_params(params)
+    def filtered_params
       params.slice(:types, :breed.downcase, :gender)
     end
 
