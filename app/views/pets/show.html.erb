@@ -72,16 +72,12 @@
         </li>
       </ul>
       <div class="">
-        <% if @pet.user_id != current_user.id %>
-          <% if Favourite.where() %>
-            <%= button_to("Favourite It!", { action: "favourite", pet_id: @pet.id }, method: "post") %>
+          <% if (@pet.user_id != current_user.id )%>
+            <%= button_to("Favourite It!", { action: "favourite!", pet_id: @pet.id, }, method: "post") %>
           <% end %>
-          <%= button_to("Request Booking", { action: "request_booking", owner_id: @pet.user_id }, method: "post") %>
-        <% end %>
+
       </div>
-      <div class="">
-        <%= button_to("Add to favourite", { action: "favourite!", owner_id: @pet.user_id }, method: "post") %>
-      </div>
+
     </div>
   </div>
 </div>

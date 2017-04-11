@@ -16,7 +16,7 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
-    byebug
+
     @pets = Pet.find(params[:id])
   end
 
@@ -47,7 +47,7 @@ class PetsController < ApplicationController
   # PATCH/PUT /pets/1
   # PATCH/PUT /pets/1.json
   def update
-    byebug
+
     respond_to do |format|
       if @pet.update(pet_params)
         format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
@@ -81,11 +81,13 @@ class PetsController < ApplicationController
   end
 
 
-  
+
 
   def favourite!
-
+    @pet  = Pet.find(params[:pet_id])
     Favourite.new(pet_id: @pet.id ,user_id: current_user.id)
+    redirect_to  pet_path(@pet)
+
   end
 
 

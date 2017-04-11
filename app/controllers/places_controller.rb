@@ -15,7 +15,7 @@ class PlacesController < ApplicationController
   def create
     result = request.location
     @place = Place.new(place_params)
-    byebug
+    
     if @place.save
       flash[:success] = "Place added!"
       redirect_to root_path
