@@ -2261,7 +2261,7 @@ ol ol {
 .list-inline {
   padding-left: 0;
   list-style: none;
-  margin-left: -5px;
+  margin-left: 0px;
 }
 /* line 177, /Users/claudiat/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/bootstrap-sass-3.3.7/assets/stylesheets/bootstrap/_type.scss */
 .list-inline > li {

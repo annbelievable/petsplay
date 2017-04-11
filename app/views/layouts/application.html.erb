@@ -20,29 +20,37 @@ content_copy
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Pets Play</a>
+          <!-- <a class="navbar-brand" href="/">Pets Play Love</a> -->
+          <a href="/">
+            <%= image_tag 'logo.jpg', border: 0, alt: "petsplaylovelogo", width: 100, height: 100 %>
+
+          </a>
         </div>
-        <ul class="nav navbar-nav">
-          <li><a href="/pets">Pets</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
+        <div class="top-bar">
+          <ul class="nav navbar-nav left-top-bar">
+            <li><a href="/pets">Pets</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </div>
+
         <% if user_signed_in? %>
-          <ul class="nav navbar-nav navbar-right"><li>
-            <%= link_to '/users/sign_out', method: "delete", class: 'glyphicon glyphicon-log-in' do %>
-              <span id="span">Sign Out</span>
+          <ul class="nav navbar-nav navbar-right left-top-bar"><li>
+            <%= link_to '/users/sign_out', method: "delete" do %>
+              <span class="myButton"> Sign Out</span>
             <% end %>
           </li></ul>
-          <ul class="nav navbar-nav navbar-right"><li>
-            <%= link_to '/profile', class: 'glyphicon glyphicon-log-in' do %>
+          <ul class="nav navbar-nav"><li>
+            <%= link_to '/profile' do %>
               <span id="span">Profile</span>
             <% end %>
           </li></ul>
         <% else %>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/users/sign_up"><span class="glyphicon glyphicon-log-in"></span> Sign Up</a></li>
+          <ul class="nav navbar-nav navbar-right left-top-bar">
+            <li><a href="/users/sign_up"><span class="myButton"> Sign Up</span></a></li>
+
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <ul class="nav navbar-nav navbar-right left-top-bar">
+            <li><a href="/users/sign_in"><span class="myButton"> Login</span></a></li>
           </ul>
         <% end %>
     </div>
@@ -55,13 +63,6 @@ content_copy
   <div class="container-fluid">
     <%= yield %>
   </div>
-
-  <footer>
-    <hr>
-    <div class="col-lg-12" id="footer">
-        <p>Copyright &copy; Pets Play 2017</p>
-    </div>
-  </footer>
 
   </body>
 </html>
