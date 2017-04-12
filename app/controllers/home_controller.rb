@@ -9,6 +9,8 @@ class HomeController < ApplicationController
 
   def profile
     @user = current_user
+    @request = Match.where("owner_id = ?", current_user.id)
+    @favourites = @user.favourite_pets
   end
 
   def approve_booking

@@ -33,6 +33,21 @@
         </li>
       </ul>
     </div>
+
+    <div class="fav_pets">
+      <% if @favourites.count > 0 %>
+        <div class="row">
+          <% @favourites.each do |f| %>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a class="thumbnail" href="/pets/<%= f.id %>">
+                <%= image_tag f.photos.first.thumb %>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
   </div>
 
   <div class="nearby_map">
@@ -41,10 +56,9 @@
   </div>
 
   <div class="notification_section">
-    <% request = Match.where("owner_id = ?", current_user.id) %>
-    <% if request.count > 0 %>
+    <% if @request.count > 0 %>
       <h3>Request Notifications:</h3>
-      <% request.each do |r| %>
+      <% @request.each do |r| %>
       <% if r.match == nil %>
         <% borrower = User.find(r.borrower_id) %>
           <div class="notification">

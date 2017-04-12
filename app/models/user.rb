@@ -3,7 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :pets
   mount_uploader :photo, PhotosUploader
 
   has_many :borrower_matches, foreign_key: 'owner_id', class_name: 'Match'
@@ -11,6 +10,9 @@ class User < ApplicationRecord
 
   has_many :owner_matches, foreign_key: 'borrower_id', class_name: "Match"
   has_many :owners, through: :owner_matches, source: :owner
+  has_many :pets
+  has_many :favourites
+  has_many :favourite_pets, through: :favourites, source: :pet
 
    validates  :first_name, presence: true, on: :update
    validates  :last_name, presence: true, on: :update
