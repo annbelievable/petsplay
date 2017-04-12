@@ -7,13 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2I6Bspl_S5ebnK61Eu5ChEhbnZZGw1TY
-
-content_copy
-&callback=initMap"
-                                           async defer></script>
-
   </head>
 
   <body>
@@ -39,7 +32,7 @@ content_copy
               <span class="myButton"> Sign Out</span>
             <% end %>
           </li></ul>
-          <ul class="nav navbar-nav"><li>
+          <ul class="nav navbar-nav left-top-bar"><li>
             <%= link_to '/profile' do %>
               <span id="span">Profile</span>
             <% end %>

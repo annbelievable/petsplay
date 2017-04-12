@@ -1,5 +1,6 @@
 
 <div class="form_container">
+
   <div class="profile">
     <div class="profile-userpic" align="center">
       <%= image_tag @user.photo.thumb %>
@@ -32,26 +33,31 @@
         </li>
       </ul>
     </div>
-
   </div>
-</div>
 
-<% request = Match.where(owner_id: current_user.id) %>
-<% if request %>
-  <% request.each do |r| %>
-  <% if r.match == nil %>
-    <% borrower = User.find(r.borrower_id) %>
-      <div class="col-lg-6 col-md-6 col-xs-6 thumb">
-        <div class="request">
-          <strong>NOTICE!</strong>
-          <p><%= borrower.first_name.capitalize %> requested to book your pet.</p>
-          <p>Please contact him/her through <%= borrower.phone_number %>/<%= borrower.email %></p>
-        </div>
-        <div class="">
-          <%= button_to("Approve", { action: "approve_booking", match_id: r.id }, method: "post") %>
-          <%= button_to("Reject", { action: "reject_booking", match_id: r.id }, method: "post") %>
-        </div>
-      </div>
+  <div class="nearby_map">
+    <h3><strong>Nearby Pets</strong></h3>
+    <%= image_tag ("/assets/mappp.jpg") %>
+  </div>
+
+  <div class="notification_section">
+    <% request = Match.where("owner_id = ?", current_user.id) %>
+    <% if request.count > 0 %>
+      <h3>Request Notifications:</h3>
+      <% request.each do |r| %>
+      <% if r.match == nil %>
+        <% borrower = User.find(r.borrower_id) %>
+          <div class="notification">
+            <p>Date: <%= r.created_at.to_date %></p>
+            <p>From <%= borrower.first_name.capitalize %> <%= borrower.last_name.capitalize %>.</p>
+            <p>Contacts: <%= borrower.phone_number %> | <%= borrower.email %></p>
+              <%= link_to "<i class=\"myButton2\">Approve</i>".html_safe, { action: "approve_booking", match_id: r.id }, method: "post" %>
+              <%= link_to "<i class=\"myButton2\">Reject</i>".html_safe, { action: "reject_booking", match_id: r.id }, method: "post" %>
+          </div>
+          <br>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+
+</div>

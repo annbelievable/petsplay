@@ -9,7 +9,6 @@ class PetsController < ApplicationController
     @pets = Pet.filter(filtered_params)
     if @pets.count == 0
       @pets = Pet.all
-      flash[:notice] = 'No result matches'
     end
   end
 

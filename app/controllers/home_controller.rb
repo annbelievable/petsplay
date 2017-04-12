@@ -12,7 +12,6 @@ class HomeController < ApplicationController
   end
 
   def approve_booking
-    byebug
     booking = Match.find(params[:match_id])
     booking.update(match: true)
     redirect_to profile_path
