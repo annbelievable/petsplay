@@ -12,9 +12,10 @@ gem 'omniauth'
 gem 'carrierwave'
 gem 'mini_magick'
 gem "fog-aws"
-gem "letter_opener", :group => :development
+gem "letter_opener", group: :development
 gem 'sidekiq'
 gem 'foreman'
+gem 'unicorn'
 gem 'rails_12factor', group: :production
 
 # frontend gems
